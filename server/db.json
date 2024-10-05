@@ -32,22 +32,6 @@
       ]
     },
     {
-      "id": "567d",
-      "listName": "clothing",
-      "items": [
-        {
-          "name": "t-shert 1",
-          "category": "Household",
-          "notes": "green"
-        },
-        {
-          "name": "skert 1",
-          "category": "Household",
-          "notes": "black"
-        }
-      ]
-    },
-    {
       "id": "887e",
       "listName": "Cooking 1",
       "items": [

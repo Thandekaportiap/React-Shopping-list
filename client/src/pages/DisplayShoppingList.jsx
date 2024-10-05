@@ -58,45 +58,46 @@ const DisplayShoppingList = ({ id }) => {
 
   return (
     <section>
-      <div className='mt-6 flex flex-col justify-center items-center'>
-        <p className="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-pink-500 my-4">Shopping Lists</p>
-        {Object.keys(groupedLists).length === 0 ? (
-          <div className="text-center col-span-3 text-4xl text-red-700">
-            No Shopping Lists available. Add your first Shopping List!
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {Object.entries(groupedLists).map(([listName, lists]) => (
-              <div key={listName} className="max-w-sm mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
-                <div className="p-5">
-                  <h2 className="text-xl font-bold mb-4">{listName}</h2>
-                  <ul className="list-disc pl-5">
-                    {lists.map((list) => (
-                      <li key={list.id} className="mb-2">
-                        <strong>{list.listName}</strong>
-                        <button onClick={() => handleEdit(list.id)}>Edit</button>
-                        <button onClick={() => handleDelete(list.id)}>Delete</button>
-                        <button onClick={() => handleShare(list)} className="ml-2">Share</button>
-                        <button onClick={() => handlePDFExport(list)} className="ml-2">Export PDF</button>
-                        {list.items && list.items.length > 0 && (
-                          <ul className="list-inside list-disc">
-                            {list.items.map((item, itemIndex) => (
-                              <li key={itemIndex}>
-                                {item.name} - Quantity: {item.quantity}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+    <div className='mt-6 flex flex-col justify-center items-center'>
+      <p className="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-pink-500 my-4">Shopping Lists</p>
+      {Object.keys(groupedLists).length === 0 ? (
+        <div className="text-center col-span-3 text-4xl text-red-700">
+          No Shopping Lists available. Add your first Shopping List!
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {Object.entries(groupedLists).map(([listName, lists]) => (
+            <div key={listName} className="max-w-sm mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
+              <div className="p-5">
+                <h2 className="text-xl font-bold mb-4">{listName}</h2>
+                <ul className="list-disc pl-5 mb-4">
+                  {lists.map((list) => (
+                    <li key={list.id} className="mb-2">
+                      <strong>{list.listName}</strong>
+                      {list.items && list.items.length > 0 && (
+                        <ul className="list-inside list-disc mb-4">
+                          {list.items.map((item, itemIndex) => (
+                            <li key={itemIndex}>
+                              {item.name} - Quantity: {item.quantity}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      <div className="flex justify-between mt-4">
+                        <button onClick={() => handleEdit(list.id)} className="text-blue-500 hover:underline">Edit</button>
+                        <button onClick={() => handleDelete(list.id)} className="text-red-500 hover:underline">Delete</button>
+                        <button onClick={() => handlePDFExport(list)} className="text-purple-500 hover:underline">Export PDF</button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
   );
 };
 
